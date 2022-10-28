@@ -1,0 +1,11 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Conference";
+}
+<h2>@ViewBag.Conference</h2>
+<h3>@ViewBag.Message</h3>
+
+
+@Html.AjaxGrid(Url.Action("ConferenceGrid"))

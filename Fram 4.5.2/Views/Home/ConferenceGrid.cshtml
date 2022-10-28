@@ -1,0 +1,28 @@
+﻿@using Fram_4._5._2.Models;
+@using Microsoft.AspNet.Identity;
+
+
+@model  List<ApplicationUser>
+
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add().RenderedAs((model, row) => row + 1).Titled("#");
+        columns.Add(model => model.FirstName).Titled("Имя");
+        columns.Add(model => model.SurName).Titled("Фамилия");
+        columns.Add(model => model.Patronymic).Titled("Очество");
+        columns.Add(model => model.RegionalCenter.Name).Titled("Регион");
+        columns.Add(model => model.Age).Titled("Возраст");
+        columns.Add(model => model.Phone).Titled("Телефон");
+        columns.Add(model => model.Email).Titled("Email");
+
+    })
+    .UsingSourceUrl(Url.Action("Conference", "Grid"))
+    .RowAttributed(model => new { @class = model.UserName == User.Identity.GetUserName() ? "grid-Identity" : null, })
+    .Empty("Nodata found")
+    .Pageable()
+    .Filterable()
+    .Sortable()
+)
